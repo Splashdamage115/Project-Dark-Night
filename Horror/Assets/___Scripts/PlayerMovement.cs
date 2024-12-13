@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction moveAction;
     private InputAction jumpAction;
+    private InputAction interactAction;
     private Vector2 movement;
 
     [SerializeField]
@@ -30,9 +31,11 @@ public class PlayerMovement : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
+        interactAction = playerInput.actions["Interact"];
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
         jumpAction.performed += OnJump;
+        interactAction.performed += OnInteract;
     }
 
     void OnMove(InputAction.CallbackContext action)
@@ -71,8 +74,10 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+    }
 
-        
-
-        }
+    void OnInteract(InputAction.CallbackContext action)
+    {
+        Camera.main.SendMessage("Interact");
+    }
 }
