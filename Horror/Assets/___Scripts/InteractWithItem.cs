@@ -14,6 +14,8 @@ public class InteractWithItem : MonoBehaviour
     public GameObject normalReticle;
     public GameObject interactibleReticle;
 
+    private bool castRay = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +29,9 @@ public class InteractWithItem : MonoBehaviour
         Camera camera = Camera.main;
         Ray camRay = camera.ScreenPointToRay(new Vector3(Screen.width / 2.0f, Screen.height / 2.0f));
         RaycastHit hitInfo;
-        //Debug.DrawRay(camRay.origin, camRay.direction * interactDist, Color.red);
+        castRay = false;
 
-        if(Physics.Raycast(camRay, out hitInfo))
+        if (Physics.Raycast(camRay, out hitInfo))
         {
             if (hitInfo.distance < interactDist)
             {
@@ -38,14 +40,15 @@ public class InteractWithItem : MonoBehaviour
                     normalReticle.SetActive(false);
                     interactibleReticle.SetActive(true);
                     highlighted = hitInfo.collider.gameObject;
-                }
-                else
-                {
-                    normalReticle.SetActive(true);
-                    interactibleReticle.SetActive(false);
-                    highlighted = null;
+                    castRay = true;
                 }
             }
+        }
+        if(!castRay)
+        {
+            normalReticle.SetActive(true);
+            interactibleReticle.SetActive(false);
+            highlighted = null;
         }
     }
 
