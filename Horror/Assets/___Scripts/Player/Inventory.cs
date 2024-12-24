@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
 
     public bool PickUp(InventoryItem item)
     {
-        if (Items.Count > maxSize) return false;
+        if (Items.Count >= maxSize) return false;
 
         Items.Add(item);
         return true;
@@ -21,6 +21,14 @@ public class Inventory : MonoBehaviour
         foreach(var i in Items)
         {
             if(i.ItemName == name) return true;
+        }
+        return false;
+    }
+    public bool checkItem(InventoryItem item)
+    {
+        foreach (var i in Items)
+        {
+            if (i.ItemName == item.ItemName) return true;
         }
         return false;
     }

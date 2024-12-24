@@ -5,8 +5,4 @@ using UnityEngine;
 
 public class MathLibrary : MonoBehaviour
 {
-    public static float interpolate(float current, float end)
-    {
-        return end - current;
-    }
 }
