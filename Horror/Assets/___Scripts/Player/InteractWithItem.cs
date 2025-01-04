@@ -52,8 +52,16 @@ public class InteractWithItem : MonoBehaviour
         }
     }
 
-    void Interact()
+    void Interact(Animator animator)
     {
-        highlighted?.SendMessage("Interact");
+        if (highlighted != null)
+        {
+            animator.SetBool("InteractValid", true);
+            highlighted.SendMessage("Interact", animator);
+        }
+        else
+        {
+            // dont need to set bools to true as interact is invalid
+        }
     }
 }

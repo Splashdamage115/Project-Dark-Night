@@ -23,7 +23,7 @@ public class DoorInteract : MonoBehaviour
     bool locked = false;
     public InventoryItem keyType;
 
-    void Interact()
+    void Interact(Animator armsAnimator)
     {
         if (locked)
         {
@@ -56,12 +56,12 @@ public class DoorInteract : MonoBehaviour
             open = !open;
             interpolationProgress = 0.0f;
             opening = true;
+            armsAnimator.SetBool("InteractPush", true);
         }
         else
         {
             Debug.Log("DOOR OR PIVOT NOT APPLIED!");
         }
-        Debug.Log("Opened Door");
     }
 
     private void Update()

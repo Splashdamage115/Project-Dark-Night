@@ -1,21 +1,23 @@
 ### Horror Game
 
-# ✅ - player movement
-# ✅ - player looking around with mouse
-# ✅ - player movement
-# ✅ - player inventory
-# ✅ - player pick up items
-# ✅ - player pick up in inventory
-# ✅ - open doors
-# ✅ - unlock doors with key
-# ✅ - interactible item reticle
-# 🔷 - Key can lock the door
-# 🔴 - player crouch
-# 🔴 - player flashlight
-# 🔴 - player inventory display system
-# 🔴 - player can read object descriptions in inventory
-# 🔴 - bunker door locking
-
+#### ✅ - player movement
+#### ✅ - player looking around with mouse
+#### ✅ - player movement
+#### ✅ - player inventory
+#### ✅ - player pick up items
+#### ✅ - player pick up in inventory
+#### ✅ - open doors
+#### ✅ - unlock doors with key
+#### ✅ - interactible item reticle
+#### 🔷 - Key can lock the door
+#### 🔴 - player crouch
+#### 🔴 - player flashlight
+#### 🔴 - player inventory display system
+#### 🔴 - player can read object descriptions in inventory
+#### 🔴 - bunker door locking
+#### 🔴 - GUN
+#### 🔴 - spider chases player
+#### 🔴 - bunker assets
 
 <br><br><br>
   </em></p>

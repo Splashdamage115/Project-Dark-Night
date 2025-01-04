@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public Animator animator;
+
     private PlayerInput playerInput;
     private InputAction interactAction;
     private InputAction inventoryAction;
@@ -13,6 +16,7 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject Inventory;
     public GameObject Torch;
     public InventoryItem torchItem;
+
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -30,7 +34,9 @@ public class PlayerInteraction : MonoBehaviour
     }
     void OnInteract(InputAction.CallbackContext action)
     {
-        Camera.main.SendMessage("Interact");
+        Camera.main.SendMessage("Interact", animator);
+        animator.SetBool("AttemptInteract", true);
+        StartCoroutine(resetInteractValues());
     }
     void OnInventory(InputAction.CallbackContext action)
     {
@@ -54,7 +60,19 @@ public class PlayerInteraction : MonoBehaviour
         if (go != null)
         {
             if (go.GetComponent<Inventory>().checkItem(torchItem))
+            {
                 Torch.SetActive(!Torch.activeSelf);
+                animator.SetBool("Flashlight", Torch.activeSelf);
+            }
         }
+    }
+
+    IEnumerator resetInteractValues()
+    {
+        yield return new WaitForNextFrameUnit();
+        animator.SetBool("AttemptInteract", false);
+        animator.SetBool("InteractValid", false);
+        animator.SetBool("InteractPush", false);
+        yield return null;
     }
 }
