@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Shotgun",
+                    "name": "Gun",
                     "type": "Button",
                     "id": "b77c494a-29eb-419b-be68-049f6a96cc43",
                     "expectedControlType": "Button",
@@ -394,7 +394,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Shotgun",
+                    "action": "Gun",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

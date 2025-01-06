@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class SeekNextPointState: EnemyBaseState
+public class SeekNextPointState : EnemyBaseState
 {
     public Transform patrolPointsParent;
     private Transform currentSeekPoint;
@@ -47,7 +47,7 @@ public class SeekNextPointState: EnemyBaseState
         // when the point is reached wait there
         if (Mathf.Sqrt(MathLibrary.squareDistancebetweenPoints(currentSeekPoint.position, rb.position)) <= 1.0f)
         {
-            sm.enterNewState(sm.WaitAtPointState);
+            sm.enterNewState(sm.waitAtPointState);
         }
     }
 

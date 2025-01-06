@@ -12,11 +12,15 @@ public class PlayerInteraction : MonoBehaviour
     private InputAction interactAction;
     private InputAction inventoryAction;
     private InputAction torchAction;
+    private InputAction weaponAction;
+    private InputAction fireAction;
 
     public GameObject Inventory;
     public GameObject Torch;
     public InventoryItem torchItem;
 
+    public GameObject Weapon;
+    public InventoryItem PistolItem;
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -31,6 +35,17 @@ public class PlayerInteraction : MonoBehaviour
         torchAction = playerInput.actions["Torch"];
         torchAction.canceled += OnTorch;
         Torch.SetActive(false);
+
+        weaponAction = playerInput.actions["Gun"];
+        weaponAction.canceled += OnWeapon;
+        Weapon.SetActive(false);
+
+        weaponAction = playerInput.actions["Gun"];
+        weaponAction.canceled += OnWeapon;
+        Weapon.SetActive(false);
+
+        fireAction = playerInput.actions["Fire"];
+        fireAction.canceled += OnShoot;
     }
     void OnInteract(InputAction.CallbackContext action)
     {
@@ -65,6 +80,35 @@ public class PlayerInteraction : MonoBehaviour
                 animator.SetBool("Flashlight", Torch.activeSelf);
             }
         }
+    }
+
+    void OnWeapon(InputAction.CallbackContext action)
+    {
+        GameObject go = GameObject.FindGameObjectWithTag("Player");
+        if (go != null)
+        {
+            if (go.GetComponent<Inventory>().checkItem(PistolItem))
+            {
+                animator.SetBool("PistolHeld", !Weapon.activeSelf);
+                StartCoroutine(changeWeaponActive());
+            }
+        }
+    }
+
+    void OnShoot(InputAction.CallbackContext action)
+    {
+        if (Weapon.activeSelf)
+        {
+            Weapon.GetComponent<ShootWeapon>().shoot();
+            Camera.main.SendMessage("hitScan", Weapon.GetComponent<ShootWeapon>().damageAmount);
+        }
+    }
+
+    IEnumerator changeWeaponActive()
+    {
+        yield return new WaitForSeconds(0.2f);
+        Weapon.SetActive(!Weapon.activeSelf);
+        yield return null;
     }
 
     IEnumerator resetInteractValues()

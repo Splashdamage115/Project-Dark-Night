@@ -1,23 +1,34 @@
 ### Horror Game
 
-#### ✅ - player movement
-#### ✅ - player looking around with mouse
-#### ✅ - player movement
-#### ✅ - player inventory
-#### ✅ - player pick up items
-#### ✅ - player pick up in inventory
-#### ✅ - open doors
-#### ✅ - unlock doors with key
-#### ✅ - interactible item reticle
-#### 🔷 - Key can lock the door
-#### 🔴 - player crouch
-#### 🔴 - player flashlight
-#### 🔴 - player inventory display system
-#### 🔴 - player can read object descriptions in inventory
-#### 🔴 - bunker door locking
-#### 🔴 - GUN
-#### 🔴 - spider chases player
-#### 🔴 - bunker assets
+## ✅ - player movement
+## ✅ - player looking around with mouse
+## ✅ - player movement
+## ✅ - player inventory
+## ✅ - player pick up items
+## ✅ - player pick up in inventory
+## ✅ - open doors
+## ✅ - unlock doors with key
+## ✅ - interactible item reticle
+## ✅ - Spider animation
+## ✅ - Spider death
+## ✅ - spider health
+## 🟠 - spider wanders
+## ✅ - Spider enemy
+## 🔷 - Key can lock the door
+## 🔴 - Holding gun interact animation
+## 🔴 - Holding gun & flashlight interact animation
+## 🔴 - Player gun recoil
+## 🔴 - Player gun bullet count / reloading
+## 🔴 - Player Picking up more ammo
+## 🔴 - Blood hit effect
+## 🔴 - wall hit effect
+## 🔴 - player crouch
+## ✅ - player flashlight
+## 🟠 - player inventory display system
+## 🔴 - player can read object descriptions in inventory
+## 🔴 - bunker door locking
+## 🔴 - spider chases player
+## 🔴 - bunker assets
 
 <br><br><br>
   </em></p>
