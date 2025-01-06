@@ -29,6 +29,7 @@
 ## 🔴 - bunker door locking
 ## 🔴 - spider chases player
 ## 🔴 - bunker assets
+## 🐛 - Invincibility frames dont work
 
 <br><br><br>
   </em></p>
