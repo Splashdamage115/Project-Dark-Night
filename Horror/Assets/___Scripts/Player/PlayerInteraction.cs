@@ -21,8 +21,13 @@ public class PlayerInteraction : MonoBehaviour
 
     public GameObject Weapon;
     public InventoryItem PistolItem;
+
+    public float MaxshootCooldown = 0.5f;
+    private float shootCooldown = 0.0f;
     void Start()
     {
+        shootCooldown = MaxshootCooldown;
+
         playerInput = GetComponent<PlayerInput>();
 
         interactAction = playerInput.actions["Interact"];
@@ -46,6 +51,14 @@ public class PlayerInteraction : MonoBehaviour
 
         fireAction = playerInput.actions["Fire"];
         fireAction.canceled += OnShoot;
+    }
+
+    private void Update()
+    {
+        if(shootCooldown > 0)
+        {
+            shootCooldown -= Time.deltaTime;
+        }
     }
     void OnInteract(InputAction.CallbackContext action)
     {
@@ -99,8 +112,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Weapon.activeSelf)
         {
-            Weapon.GetComponent<ShootWeapon>().shoot();
-            Camera.main.SendMessage("hitScan", Weapon.GetComponent<ShootWeapon>().damageAmount);
+            if (shootCooldown <= 0.0f)
+            {
+                shootCooldown = MaxshootCooldown;
+                animator.SetBool("Shoot", true); StartCoroutine(resetShoot());
+                Weapon.GetComponent<ShootWeapon>().shoot();
+                Camera.main.SendMessage("hitScan", Weapon.GetComponent<ShootWeapon>().damageAmount);
+            }
         }
     }
 
@@ -117,6 +135,13 @@ public class PlayerInteraction : MonoBehaviour
         animator.SetBool("AttemptInteract", false);
         animator.SetBool("InteractValid", false);
         animator.SetBool("InteractPush", false);
+        yield return null;
+    }
+
+    IEnumerator resetShoot()
+    {
+        yield return new WaitForNextFrameUnit();
+        animator.SetBool("Shoot", false);
         yield return null;
     }
 }

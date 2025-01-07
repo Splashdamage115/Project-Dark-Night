@@ -13,8 +13,10 @@ public class CameraRayShoot : MonoBehaviour
     {
         hitMarker.SetActive(false);
     }
+
     void hitScan(int damageAmt)
     {
+        GetComponent<PlayerFlinch>().flinch(PlayerFlinch.FlinchAmount.Small);
         Camera camera = Camera.main;
         Ray camRay = camera.ScreenPointToRay(new Vector3(Screen.width / 2.0f, Screen.height / 2.0f));
         RaycastHit hitInfo;
@@ -34,7 +36,7 @@ public class CameraRayShoot : MonoBehaviour
     {
         yield return new WaitForSeconds(hitmarkerActiveTime);
         hitmarkerActiveAmount--;
-        if(hitmarkerActiveAmount <= 0)
+        if (hitmarkerActiveAmount <= 0)
             hitMarker.SetActive(false);
         yield return null;
     }

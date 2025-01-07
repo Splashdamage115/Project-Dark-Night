@@ -15,9 +15,9 @@
 ## 🟠 - spider wanders
 ## ✅ - Spider enemy
 ## 🔷 - Key can lock the door
-## 🔴 - Holding gun interact animation
-## 🔴 - Holding gun & flashlight interact animation
-## 🔴 - Player gun recoil
+## ✅ - Holding gun interact animation
+## ✅ - Holding gun & flashlight interact animation
+## 🟠 - Player gun recoil
 ## 🔴 - Player gun bullet count / reloading
 ## 🔴 - Player Picking up more ammo
 ## 🔴 - Blood hit effect

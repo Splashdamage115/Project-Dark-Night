@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 
 public class CameraMovementController : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class CameraMovementController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    private void Update()
     {
         Vector3 pos = player.transform.position;
         pos.y += cameraOffset;
