@@ -29,6 +29,9 @@
 ## 🔴 - bunker door locking
 ## 🔴 - spider chases player
 ## 🔴 - bunker assets
+## 🔴 - TCorrider colliders
+## 🔴 - +Corrider
+## 🔷 - Corner Corrider
 ## 🐛 - Invincibility frames dont work
 
 <br><br><br>
