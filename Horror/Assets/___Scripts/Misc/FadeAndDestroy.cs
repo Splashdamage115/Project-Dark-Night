@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,16 +18,25 @@ public class FadeAndDestroy : MonoBehaviour
     {
         try
         {
-            materials = materialHolder.GetComponent<MeshRenderer>().materials;
-
-            if (materials.Length <= 0)
+            
+            if (materialHolder.TryGetComponent<MeshRenderer>(out MeshRenderer component))
             {
-                materials = materialHolder.GetComponent<SkinnedMeshRenderer>().materials;
+                materials = component.materials;
             }
+            else if (materialHolder.TryGetComponent<SkinnedMeshRenderer>(out SkinnedMeshRenderer skinnedComponent))
+            {
+                materials = skinnedComponent.materials;
+            }
+            else
+            {
+                materials.Append(materialHolder.GetComponent<Material>());
+            }
+
         }
         catch
         {
- 
+            Debug.Log("Couldnt Find material Component");
+            return;
         }
         StartCoroutine(deleteObject());
 
