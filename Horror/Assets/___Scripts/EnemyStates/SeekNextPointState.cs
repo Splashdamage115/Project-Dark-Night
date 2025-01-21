@@ -9,7 +9,7 @@ public class SeekNextPointState : EnemyBaseState
     private Transform currentSeekPoint;
     private int seekPointIndex = 0;
 
-    public float speed = 100.0f;
+    public float speed = 1000.0f;
 
     Rigidbody rb;
 
@@ -36,21 +36,30 @@ public class SeekNextPointState : EnemyBaseState
     }
     public override void update(StateMachine sm)
     {
+        if (sm.findShortRange())
+        {
+            sm.enterNewState(sm.SeekPlayerState);
+        }
         // look in the direction of the point
-        Quaternion targetRotation = Quaternion.LookRotation(rb.transform.position - currentSeekPoint.position);
+        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(currentSeekPoint.position.x, rb.transform.position.y, currentSeekPoint.position.z) - rb.transform.position);
         rb.transform.rotation = Quaternion.RotateTowards(rb.transform.rotation, targetRotation, angleChangeSpeed * Time.deltaTime);
 
         // move forward along direction
-        Vector3 move = new Vector3(0.0f, 0.0f, -1.0f);
-        rb.velocity = rb.transform.TransformDirection(move * speed * Time.deltaTime * 10);
+        Vector3 moveDirection = rb.transform.forward;
+        rb.velocity = moveDirection * speed * Time.deltaTime;
+
 
         // when the point is reached wait there
-        if (Mathf.Sqrt(MathLibrary.squareDistancebetweenPoints(currentSeekPoint.position, rb.position)) <= 1.0f)
+        if (Mathf.Sqrt(MathLibrary.squareDistancebetweenPoints(currentSeekPoint.position, rb.position)) <= 2.0f)
         {
             sm.enterNewState(sm.waitAtPointState);
         }
     }
 
-    public override void ExitState(StateMachine sm) {  }
+    public override void ExitState(StateMachine sm) 
+    {
+        rb.velocity = Vector3.zero;
+        sm.animator.SetBool("isWalking", false);
+    }
 
 }

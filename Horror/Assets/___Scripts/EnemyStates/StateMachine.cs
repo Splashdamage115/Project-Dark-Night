@@ -5,31 +5,38 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
+    public float smallTriggerRadius = 2f;
+    public float largeTriggerRadius = 3.0f;
+
+    public Transform player;
+
+    public Vector3 pos;
+
     public Animator animator;
 
     public GameObject materialHolder;
-    private Material material;
-    public float clipIncrease = 1.0f;
-    public float clipAmt = 0.0f;
 
     public EnemyBaseState currentState;
     public Transform patrolPointsParent;
 
     public WaitAtPointState waitAtPointState = new WaitAtPointState();
-    public SeekNextPointState seekNextPointState = new SeekNextPointState(); 
+    public SeekNextPointState seekNextPointState = new SeekNextPointState();
+    public AttackPlayer AttackPlayerState = new AttackPlayer();
+    public SeekPlayer SeekPlayerState = new SeekPlayer();
     public DeathState deathState = new DeathState();
 
     // Start is called before the first frame update
     void Start()
     {
+        //player = GameObject.FindWithTag("Player").transform;
         seekNextPointState.patrolPointsParent = patrolPointsParent;
         enterNewState(waitAtPointState);
-        material = materialHolder.GetComponent<SkinnedMeshRenderer>().material;
     }
 
     // Update is called once per frame
     void Update()
     {
+        pos = player.position;
         currentState.update(this);
     }
 
@@ -50,17 +57,28 @@ public class StateMachine : MonoBehaviour
 
     public void Destroy()
     {
-        StartCoroutine(deleteObject());
+        FadeAndDestroy t = gameObject.AddComponent<FadeAndDestroy>();
+        t.materialHolder = materialHolder;
     }
-    IEnumerator deleteObject()
+
+    public bool findShortRange()
     {
-        while (clipAmt < 1.0f)
+        if (Mathf.Sqrt(MathLibrary.squareDistancebetweenPoints(player.position, transform.position)) <= smallTriggerRadius)
         {
-            clipAmt += clipIncrease * Time.deltaTime;
-            material.SetFloat("_AlphaClip", clipAmt);
-            yield return new WaitForNextFrameUnit();
+            return true;
         }
-        Destroy(gameObject);
-        yield return null;
+
+        return false;
+    }
+
+    public bool findLongRange()
+    {
+       
+        if (Mathf.Sqrt(MathLibrary.squareDistancebetweenPoints(player.position, transform.position)) <= largeTriggerRadius)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

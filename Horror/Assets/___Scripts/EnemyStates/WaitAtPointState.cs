@@ -14,6 +14,10 @@ public class WaitAtPointState : EnemyBaseState
     }
     public override void update(StateMachine sm)
     {
+        if (sm.findLongRange())
+        {
+            sm.enterNewState(sm.SeekPlayerState);
+        }
         if (currentWaitAtPointTime > 0.0f)
         {
             currentWaitAtPointTime -= Time.deltaTime;
