@@ -11,6 +11,11 @@ public class MathLibrary : MonoBehaviour
         return ((t_pos2.x - t_pos1.x) * (t_pos2.x - t_pos1.x) + (t_pos2.y - t_pos1.y) * (t_pos2.y - t_pos1.y) + (t_pos2.z - t_pos1.z) * (t_pos2.z - t_pos1.z));
     }
 
+    public static float DistancebetweenPoints(Vector3 t_pos1, Vector3 t_pos2)
+    {
+        return Mathf.Sqrt((t_pos2.x - t_pos1.x) * (t_pos2.x - t_pos1.x) + (t_pos2.y - t_pos1.y) * (t_pos2.y - t_pos1.y) + (t_pos2.z - t_pos1.z) * (t_pos2.z - t_pos1.z));
+    }
+
     public static Vector3 displacement(Vector3 t_loaction, Vector3 t_aim)
     {
         Vector3 displacement = t_aim - t_loaction;

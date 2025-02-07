@@ -4,43 +4,39 @@ using UnityEngine;
 
 public class SeekPlayer : EnemyBaseState
 {
-    public float speed = 1000.0f;
-
-    private float lockY = 0.0f;
-
     Rigidbody rb;
 
-    [SerializeField]
-    private float angleChangeSpeed = 180.0f; // angle change a second
     public override void EnterState(StateMachine sm)
     {
         rb = sm.gameObject.GetComponent<Rigidbody>();
-        sm.animator.SetBool("isWalking", true);
-        lockY = rb.position.y;
+        sm.animator.SetBool("isRunning", true);
     }
 
     public override void update(StateMachine sm)
     {
-        // look in the direction of the point
-        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(sm.pos.x,rb.transform.position.y,sm.pos.z) - rb.transform.position);
+        sm.agent.SetDestination(sm.player.position);
 
-        rb.transform.rotation = Quaternion.RotateTowards(rb.transform.rotation, targetRotation, angleChangeSpeed * Time.deltaTime);
-
-
-        // move forward along direction
-        Vector3 moveDirection = rb.transform.forward;
-        rb.velocity = moveDirection * speed * Time.deltaTime;
-
-        rb.MovePosition(new Vector3(rb.position.x, lockY, rb.position.z));
-        // when the point is reached wait there
-        if (Mathf.Sqrt(MathLibrary.squareDistancebetweenPoints(sm.player.position, rb.position)) <= 1.5f)
+        if(sm.agent.remainingDistance < 5.0f)
         {
-            sm.enterNewState(sm.AttackPlayerState);
+            if (sm.agent.remainingDistance < 1.0f)
+            {
+                if (sm.agent.hasPath)
+                {
+                    sm.enterNewState(sm.AttackPlayerState);
+                }
+            }
+        }
+        else 
+        {
+            sm.enterNewState(sm.searchAreaState);
         }
     }
     public override void ExitState(StateMachine sm)
     {
+        sm.agent.ResetPath();
         rb.velocity = Vector3.zero;
+        sm.animator.SetBool("isRunning", false);
         sm.animator.SetBool("isWalking", false);
+
     }
 }

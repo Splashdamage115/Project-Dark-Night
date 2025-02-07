@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaitAtPointState : EnemyBaseState
 {
+    public bool waitPermanent = false;
     public float waitAtPointTime = 2.0f;
     private float currentWaitAtPointTime = 0.0f;
 
@@ -18,12 +19,15 @@ public class WaitAtPointState : EnemyBaseState
         {
             sm.enterNewState(sm.SeekPlayerState);
         }
-        if (currentWaitAtPointTime > 0.0f)
+        if (!waitPermanent)
         {
-            currentWaitAtPointTime -= Time.deltaTime;
-            if (currentWaitAtPointTime <= 0.0f)
+            if (currentWaitAtPointTime > 0.0f)
             {
-                sm.enterNewState(sm.seekNextPointState);
+                currentWaitAtPointTime -= Time.deltaTime;
+                if (currentWaitAtPointTime <= 0.0f)
+                {
+                    sm.enterNewState(sm.seekNextPointState);
+                }
             }
         }
     }

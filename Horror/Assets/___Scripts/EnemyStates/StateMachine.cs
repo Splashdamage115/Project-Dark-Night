@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class StateMachine : MonoBehaviour
 {
-    public float smallTriggerRadius = 2f;
-    public float largeTriggerRadius = 3.0f;
+    public float smallTriggerRadius = 1f;
+    public float largeTriggerRadius = 2.0f;
+    public bool waitAtPointPermanent = false;
+
+
+    public NavMeshAgent agent;
+
+    public Transform AttackPoint;
 
     public Transform player;
-
-    public Vector3 pos;
 
     public Animator animator;
 
@@ -24,19 +30,20 @@ public class StateMachine : MonoBehaviour
     public AttackPlayer AttackPlayerState = new AttackPlayer();
     public SeekPlayer SeekPlayerState = new SeekPlayer();
     public DeathState deathState = new DeathState();
+    public SearchAreaState searchAreaState = new SearchAreaState();
 
     // Start is called before the first frame update
     void Start()
     {
-        //player = GameObject.FindWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
         seekNextPointState.patrolPointsParent = patrolPointsParent;
-        enterNewState(waitAtPointState);
+        waitAtPointState.waitPermanent = waitAtPointPermanent;
+        enterNewState(seekNextPointState);
     }
 
     // Update is called once per frame
     void Update()
     {
-        pos = player.position;
         currentState.update(this);
     }
 
@@ -63,7 +70,7 @@ public class StateMachine : MonoBehaviour
 
     public bool findShortRange()
     {
-        if (Mathf.Sqrt(MathLibrary.squareDistancebetweenPoints(player.position, transform.position)) <= smallTriggerRadius)
+        if (Mathf.Sqrt(MathLibrary.DistancebetweenPoints(player.position, transform.position)) <= smallTriggerRadius)
         {
             return true;
         }
@@ -74,7 +81,7 @@ public class StateMachine : MonoBehaviour
     public bool findLongRange()
     {
        
-        if (Mathf.Sqrt(MathLibrary.squareDistancebetweenPoints(player.position, transform.position)) <= largeTriggerRadius)
+        if (Mathf.Sqrt(MathLibrary.DistancebetweenPoints(player.position, transform.position)) <= largeTriggerRadius)
         {
             return true;
         }
