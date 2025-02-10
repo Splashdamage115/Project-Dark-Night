@@ -166,6 +166,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PivotPoint: {fileID: 9161791412966398749}
   Door: {fileID: 6094496060323035397}
+  chest: 0
+  x: -90
   locked: 0
   keyType: {fileID: 11400000, guid: f77c1bcc47585fa4cbd13b0ba6f7a164, type: 2}
 --- !u!65 &1136622726788564296

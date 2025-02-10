@@ -35,6 +35,7 @@ public class StateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         seekNextPointState.patrolPointsParent = patrolPointsParent;
         waitAtPointState.waitPermanent = waitAtPointPermanent;

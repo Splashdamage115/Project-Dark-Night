@@ -13,6 +13,8 @@ public class DoorInteract : MonoBehaviour
 
     public bool chest = false;
 
+    public float x = 0f;
+
     bool open = false;
     private bool opening = false;
     private float targetRotation = 0.0f;
@@ -23,6 +25,14 @@ public class DoorInteract : MonoBehaviour
     [SerializeField]
     bool locked = false;
     public InventoryItem keyType;
+
+    private void Start()
+    {
+        if(x == 0f)
+        {
+            x = Door.transform.localEulerAngles.x;
+        }
+    }
 
     void Interact(Animator armsAnimator)
     {
@@ -53,8 +63,8 @@ public class DoorInteract : MonoBehaviour
                 }
                 else
                 {
-                    targetRotation = 0.0f;
-                    currentRotation = 90.0f;
+                targetRotation = 0.0f;
+                currentRotation = 90.0f;
                 }
                 
             }
@@ -94,8 +104,8 @@ public class DoorInteract : MonoBehaviour
                 interpolationProgress);
             }
             else
-                Door.transform.localRotation = Quaternion.Lerp(Quaternion.Euler(-90.0f, currentRotation, Door.transform.localEulerAngles.z),
-                    Quaternion.Euler(-90.0f, targetRotation, Door.transform.localEulerAngles.z),
+                Door.transform.localRotation = Quaternion.Lerp(Quaternion.Euler(x, currentRotation, Door.transform.localEulerAngles.z),
+                    Quaternion.Euler(x, targetRotation, Door.transform.localEulerAngles.z),
                     interpolationProgress);
         }
         if (chest)

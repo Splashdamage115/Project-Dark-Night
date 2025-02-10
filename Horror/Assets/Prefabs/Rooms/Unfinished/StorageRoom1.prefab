@@ -1508,7 +1508,7 @@ Transform:
   m_GameObject: {fileID: 7834326298811147389}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.368, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2833,14 +2833,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 684823616621140513, guid: fecf4cb09a2a13c41ba2ad2cb78b0f46,
+        type: 3}
+      propertyPath: lights.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4288415366993688861, guid: fecf4cb09a2a13c41ba2ad2cb78b0f46,
         type: 3}
       propertyPath: m_Name
       value: RoofLight
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 684823616621140513, guid: fecf4cb09a2a13c41ba2ad2cb78b0f46, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4360674092145365398, guid: fecf4cb09a2a13c41ba2ad2cb78b0f46, type: 3}
+    - {fileID: 354373307984553470, guid: fecf4cb09a2a13c41ba2ad2cb78b0f46, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fecf4cb09a2a13c41ba2ad2cb78b0f46, type: 3}
