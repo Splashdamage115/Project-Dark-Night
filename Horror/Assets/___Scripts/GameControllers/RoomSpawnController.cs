@@ -8,7 +8,8 @@ public class RoomSpawnController : MonoBehaviour
 {
     public GameObject[] rooms;
     private List<bool> spawned;
-    void Start()
+
+    void Awake()
     {
         GameObject[] spawnPositions = GameObject.FindGameObjectsWithTag("DoorSpawnLocation");
 

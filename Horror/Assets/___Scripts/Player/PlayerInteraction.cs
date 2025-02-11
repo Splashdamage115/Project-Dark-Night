@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -24,6 +25,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public float MaxshootCooldown = 0.5f;
     private float shootCooldown = 0.0f;
+
     void Start()
     {
         shootCooldown = MaxshootCooldown;
@@ -60,6 +62,7 @@ public class PlayerInteraction : MonoBehaviour
             shootCooldown -= Time.deltaTime;
         }
     }
+
     void OnInteract(InputAction.CallbackContext action)
     {
         Camera.main.SendMessage("Interact", animator);

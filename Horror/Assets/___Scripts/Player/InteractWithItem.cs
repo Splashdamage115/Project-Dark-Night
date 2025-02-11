@@ -13,12 +13,14 @@ public class InteractWithItem : MonoBehaviour
 
     public GameObject normalReticle;
     public GameObject interactibleReticle;
+    public TextMeshProUGUI hudText;
 
     private bool castRay = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        hudText.text = "";
         normalReticle.SetActive(true);
         interactibleReticle.SetActive(false);
     }
@@ -40,12 +42,19 @@ public class InteractWithItem : MonoBehaviour
                     normalReticle.SetActive(false);
                     interactibleReticle.SetActive(true);
                     highlighted = hitInfo.collider.gameObject;
+                    if (highlighted != null)
+                    {
+                        hudText.text = highlighted.GetComponent<InteractText>().getText();
+                        hudText.color = highlighted.GetComponent<InteractText>().Color;
+                    }
                     castRay = true;
                 }
             }
         }
         if(!castRay)
         {
+            hudText.text = "";
+            hudText.color = Color.white;
             normalReticle.SetActive(true);
             interactibleReticle.SetActive(false);
             highlighted = null;

@@ -28,6 +28,17 @@ public class DoorInteract : MonoBehaviour
 
     private void Start()
     {
+        if(gameObject.GetComponent<InteractText>() != null)
+            gameObject.GetComponent<InteractText>().text = "Open Door";
+        if(locked)
+        {
+            if(keyType != null)
+            {
+                gameObject.GetComponent<InteractText>().Color = Color.red;
+                string keyName = keyType.DisplayName;
+                gameObject.GetComponent<InteractText>().text = "Locked [" + keyName + "]";
+            }
+        }
         if(x == 0f)
         {
             x = Door.transform.localEulerAngles.x;
@@ -44,6 +55,12 @@ public class DoorInteract : MonoBehaviour
                 if (go.GetComponent<Inventory>().checkItem(keyType))
                 {
                     locked = false;
+                    gameObject.GetComponent<InteractText>().Color = Color.white;
+                    if(chest)
+                        gameObject.GetComponent<InteractText>().text = "Open Chest";
+                    else
+                        gameObject.GetComponent<InteractText>().text = "Open Door";
+
                     // play an unlock sound here!
                     return;
                 }
