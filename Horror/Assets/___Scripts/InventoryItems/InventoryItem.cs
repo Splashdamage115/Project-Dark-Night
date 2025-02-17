@@ -7,4 +7,5 @@ public class InventoryItem : ScriptableObject
 {
     public string DisplayName;
     public string ItemName;
+    public string description;
 }

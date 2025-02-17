@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayName: Lab Key
   ItemName: LabKey
+  description: The word LAB is etched into the face of the key. This key must unlock
+    the lab.

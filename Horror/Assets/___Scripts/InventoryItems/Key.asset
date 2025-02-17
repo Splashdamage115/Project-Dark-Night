@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayName: Key
   ItemName: KeyA
+  description: Basic Key

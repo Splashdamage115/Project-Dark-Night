@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public InventoryHolder holder;
     public List<InventoryItem> Items;
     public int maxSize;
 
@@ -13,6 +14,9 @@ public class Inventory : MonoBehaviour
         if (Items.Count >= maxSize) return false;
 
         Items.Add(item);
+
+        holder.addItem();
+
         return true;
     }
 

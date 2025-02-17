@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayName: Torch
   ItemName: TorchNormal
+  description: Illuminate a small area with this torch
