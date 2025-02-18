@@ -15,6 +15,7 @@ public class PlayerInteraction : MonoBehaviour
     private InputAction torchAction;
     private InputAction weaponAction;
     private InputAction fireAction;
+    private InputAction pauseAction;
 
     public GameObject Inventory;
     public GameObject Torch;
@@ -25,6 +26,9 @@ public class PlayerInteraction : MonoBehaviour
 
     public float MaxshootCooldown = 0.5f;
     private float shootCooldown = 0.0f;
+
+    public bool subMenuOpen = false;
+    public GameObject pauseMenu;
 
     void Start()
     {
@@ -53,6 +57,9 @@ public class PlayerInteraction : MonoBehaviour
 
         fireAction = playerInput.actions["Fire"];
         fireAction.canceled += OnShoot;
+
+        pauseAction = playerInput.actions["Pause"];
+        pauseAction.canceled += OnPause;
     }
 
     private void Update()
@@ -62,65 +69,84 @@ public class PlayerInteraction : MonoBehaviour
             shootCooldown -= Time.deltaTime;
         }
     }
-
+    void OnPause(InputAction.CallbackContext action)
+    {
+        if(!subMenuOpen)
+            pauseMenu.gameObject.SetActive(!pauseMenu.activeSelf);
+    }
+    
     void OnInteract(InputAction.CallbackContext action)
     {
+        if(pauseMenu.activeSelf == false) { 
         Camera.main.SendMessage("Interact", animator);
         animator.SetBool("AttemptInteract", true);
         StartCoroutine(resetInteractValues());
+        }
     }
     void OnInventory(InputAction.CallbackContext action)
     {
-        Inventory.SetActive(!Inventory.activeSelf);
+        if (pauseMenu.activeSelf == false)
+        {
+            Inventory.SetActive(!Inventory.activeSelf);
 
-        if (Inventory.activeSelf == false)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Camera.main.SendMessage("setMoveState", true);
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Camera.main.SendMessage("setMoveState", false);
+            if (Inventory.activeSelf == false)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Camera.main.SendMessage("setMoveState", true);
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Camera.main.SendMessage("setMoveState", false);
+            }
         }
     }
 
     void OnTorch(InputAction.CallbackContext action)
     {
-        GameObject go = GameObject.FindGameObjectWithTag("Player");
-        if (go != null)
+        if (pauseMenu.activeSelf == false)
         {
-            if (go.GetComponent<Inventory>().checkItem(torchItem))
+            GameObject go = GameObject.FindGameObjectWithTag("Player");
+            if (go != null)
             {
-                Torch.SetActive(!Torch.activeSelf);
-                animator.SetBool("Flashlight", Torch.activeSelf);
+                if (go.GetComponent<Inventory>().checkItem(torchItem))
+                {
+                    Torch.SetActive(!Torch.activeSelf);
+                    animator.SetBool("Flashlight", Torch.activeSelf);
+                }
             }
         }
     }
 
     void OnWeapon(InputAction.CallbackContext action)
     {
-        GameObject go = GameObject.FindGameObjectWithTag("Player");
-        if (go != null)
+        if (pauseMenu.activeSelf == false)
         {
-            if (go.GetComponent<Inventory>().checkItem(PistolItem))
+            GameObject go = GameObject.FindGameObjectWithTag("Player");
+            if (go != null)
             {
-                animator.SetBool("PistolHeld", !Weapon.activeSelf);
-                StartCoroutine(changeWeaponActive());
+                if (go.GetComponent<Inventory>().checkItem(PistolItem))
+                {
+                    animator.SetBool("PistolHeld", !Weapon.activeSelf);
+                    StartCoroutine(changeWeaponActive());
+                }
             }
         }
     }
 
     void OnShoot(InputAction.CallbackContext action)
     {
-        if (Weapon.activeSelf)
+        if (pauseMenu.activeSelf == false)
         {
-            if (shootCooldown <= 0.0f)
+            if (Weapon.activeSelf)
             {
-                shootCooldown = MaxshootCooldown;
-                animator.SetBool("Shoot", true); StartCoroutine(resetShoot());
-                Weapon.GetComponent<ShootWeapon>().shoot();
-                Camera.main.SendMessage("hitScan", Weapon.GetComponent<ShootWeapon>().damageAmount);
+                if (shootCooldown <= 0.0f)
+                {
+                    shootCooldown = MaxshootCooldown;
+                    animator.SetBool("Shoot", true); StartCoroutine(resetShoot());
+                    Weapon.GetComponent<ShootWeapon>().shoot();
+                    Camera.main.SendMessage("hitScan", Weapon.GetComponent<ShootWeapon>().damageAmount);
+                }
             }
         }
     }

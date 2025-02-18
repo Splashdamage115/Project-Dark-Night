@@ -13,9 +13,11 @@ public class TextClose : MonoBehaviour
 
     public TextMeshProUGUI text;
 
+    public PlayerInteraction playerPauseCheck;
 
     void Start()
     {
+        //playerPauseCheck = GameObject.FindWithTag("Player").GetComponent<PlayerInteraction>();
         playerInput = GetComponent<PlayerInput>();
 
         closePauseAction = playerInput.actions["Pause"];
@@ -24,6 +26,7 @@ public class TextClose : MonoBehaviour
 
     public void openPage(TextItem textItem)
     {
+        playerPauseCheck.subMenuOpen = true;
         text.text = ReadTextFile.readFile(textItem.path);
         Time.timeScale = 0.0f;
     }
@@ -32,5 +35,6 @@ public class TextClose : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         gameObject.SetActive(false);
+        playerPauseCheck.subMenuOpen = false;
     }
 }
