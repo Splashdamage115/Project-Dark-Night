@@ -16,13 +16,22 @@ public class Flickering : MonoBehaviour
 
     public float currentFlip = 0.0f;
 
+    private ActivateLight ActivateLightClass;
+
     private void Start()
     {
         currentFlip = Random.Range(shortestOn, longestOn);
+        ActivateLightClass = GetComponent<ActivateLight>();
     }
 
     private void Update()
     {
+        if (ActivateLightClass != null)
+        {
+            if (!ActivateLightClass.On)
+                return;
+        }
+
         currentFlip -= Time.deltaTime;
         if (currentFlip <= 0.0f)
         {

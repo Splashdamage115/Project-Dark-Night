@@ -24,7 +24,8 @@ public class RoomSpawnController : MonoBehaviour
             // keep randomising until a unique room is spawned
             int spawnNum = Random.Range(0, rooms.Length);
             while (spawned[spawnNum]) 
-            { 
+            {
+                if (i >= rooms.Length) break;
                 spawnNum = Random.Range(0, rooms.Length);
             }
 

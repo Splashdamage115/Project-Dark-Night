@@ -12,27 +12,42 @@
 ## ✅ - Spider animation
 ## ✅ - Spider death
 ## ✅ - spider health
-## 🟠 - spider wanders
+## ✅ - spider wanders
 ## ✅ - Spider enemy
 ## 🔷 - Key can lock the door
 ## ✅ - Holding gun interact animation
-## ✅ - Holding gun & flashlight interact animation
-## 🟠 - Player gun recoil
-## 🔴 - Player gun bullet count / reloading
-## 🔴 - Player Picking up more ammo
-## 🔴 - Blood hit effect
-## 🔴 - wall hit effect
-## 🔴 - player crouch
 ## ✅ - player flashlight
-## 🟠 - player inventory display system
-## 🔴 - player can read object descriptions in inventory
-## 🔴 - bunker door locking
-## 🔴 - spider chases player
-## 🔴 - bunker assets
-## 🔴 - TCorrider colliders
-## 🔴 - +Corrider
+## ✅ - Holding gun & flashlight interact animation
+## 🔷 - Blood hit effect
+## 🔷 - wall hit effect
+## ✅ - player inventory display system
+## ✅ - player can read object descriptions in inventory
+## 🔷 - bunker door locking
+## ✅ - spider chases player
 ## 🔷 - Corner Corrider
 ## 🐛 - Invincibility frames dont work
+
+## 🔷 - player panic increase, make screen darker
+## 🟠 - Player gun recoil
+## 🟠 - Player gun bullet count / reloading
+## 🟠 - Player Picking up more ammo
+## 🐛 - Continue button
+## 🔷 - main menu
+
+## 🟠 - Intro cutscene
+
+## 🔴 - player crouch
+## 🔴 - enemies damage player
+## 🔴 - player screen damage
+## 🔴 - lab rooms
+## 🔴 - corpses
+## 🔴 - Blood
+## 🔴 - Energy room
+## ✅ - red flashing lights
+## 🔴 - Power turn on, Turn off red
+## 🔴 - drawers
+## 🔴 - figure ~ ~ ~
+
 
 <br><br><br>
   </em></p>

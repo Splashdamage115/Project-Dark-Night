@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: -1583776594625234479}
   - component: {fileID: 5601669640409994155}
   - component: {fileID: 7685087840854772006}
+  - component: {fileID: 820422989642405657}
   m_Layer: 0
   m_Name: LightLongOffSync
   m_TagString: Untagged
@@ -337,6 +338,27 @@ MonoBehaviour:
   longestOn: 1
   shortestOn: 0.8
   currentFlip: 0
+--- !u!114 &820422989642405657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5688448546197186625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 068c333fcacce92459a8e35991c8f119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  On: 0
+  emergencyLight: 0
+  lightObj:
+  - {fileID: 6122200088372775392}
+  - {fileID: 1071531093754081193}
+  - {fileID: 7191003702237862941}
+  - {fileID: 612154774564634494}
+  - {fileID: 8365665688713165731}
+  - {fileID: 7457541609159701030}
 --- !u!1 &5960193871275952784
 GameObject:
   m_ObjectHideFlags: 0

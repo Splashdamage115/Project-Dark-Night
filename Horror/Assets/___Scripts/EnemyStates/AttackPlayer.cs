@@ -17,6 +17,12 @@ public class AttackPlayer : EnemyBaseState
         sm.animator.SetBool("isAttacking", true);
         currentAttackTime = attackTime;
         rb = sm.GetComponent<Rigidbody>();
+
+        Debug.Log($"Distance: {Vector3.Distance(sm.player.transform.position, sm.AttackPoint.transform.position)}");
+        if (Vector3.Distance(sm.player.transform.position, sm.AttackPoint.transform.position) <= 0.7f)
+        {
+            sm.player.SendMessage("applyDamage", 1);
+        }
     }
 
     public override void update(StateMachine sm)

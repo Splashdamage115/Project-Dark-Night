@@ -128,6 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 581565907650641546}
   - component: {fileID: 684823616621140513}
+  - component: {fileID: 5042037457156423025}
   m_Layer: 0
   m_Name: RoofLight
   m_TagString: Untagged
@@ -173,6 +174,23 @@ MonoBehaviour:
   longestOn: 1
   shortestOn: 0.5
   currentFlip: 0
+--- !u!114 &5042037457156423025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4288415366993688861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 068c333fcacce92459a8e35991c8f119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  On: 0
+  emergencyLight: 0
+  lightObj:
+  - {fileID: 4360674092145365398}
+  - {fileID: 354373307984553470}
 --- !u!1 &4360674092145365398
 GameObject:
   m_ObjectHideFlags: 0
