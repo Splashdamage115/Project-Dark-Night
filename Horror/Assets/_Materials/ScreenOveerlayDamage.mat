@@ -42,10 +42,10 @@ Material:
     - _BloodMultiply: 8.07
     - _BloodPower: 7.55
     - _BloodRandomness: 2
-    - _BloodSpeed: 3
+    - _BloodSpeed: 1.83
     - _VignetteIntensity: 1
     - _VignettePower: 3
-    - _Visibility: 0.29
+    - _Visibility: 0.0000041515573
     m_Colors:
     - _VignetteColour: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -1737,6 +1737,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 549033123470080718}
     m_Modifications:
+    - target: {fileID: 2833133847032733147, guid: e78755124effeaf48ab7a9bacc0f7197,
+        type: 3}
+      propertyPath: m_Name
+      value: SpawnPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833133847032733147, guid: e78755124effeaf48ab7a9bacc0f7197,
+        type: 3}
+      propertyPath: m_TagString
+      value: PowerKeySpawn
+      objectReference: {fileID: 0}
     - target: {fileID: 4864643508744006601, guid: e78755124effeaf48ab7a9bacc0f7197,
         type: 3}
       propertyPath: m_Name
@@ -1792,8 +1802,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 1776614723581243431, guid: e78755124effeaf48ab7a9bacc0f7197, type: 3}
+    - {fileID: 5377794784742548997, guid: e78755124effeaf48ab7a9bacc0f7197, type: 3}
+    - {fileID: 1002979443375988015, guid: e78755124effeaf48ab7a9bacc0f7197, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 1948442595091802205, guid: e78755124effeaf48ab7a9bacc0f7197, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e78755124effeaf48ab7a9bacc0f7197, type: 3}

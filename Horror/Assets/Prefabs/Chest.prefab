@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 2412559704993989993}
   - component: {fileID: 4079953598544191364}
   - component: {fileID: 1575408211222240116}
+  - component: {fileID: -2643412038415099352}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Interactible
@@ -332,6 +333,7 @@ MonoBehaviour:
   PivotPoint: {fileID: 7703265057867346386}
   Door: {fileID: 8259040411606912468}
   chest: 1
+  x: 0
   locked: 0
   keyType: {fileID: 0}
 --- !u!65 &6426968549717133466
@@ -439,6 +441,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.32, y: 0.24890542, z: 0.030000001}
   m_Center: {x: 0.019999996, y: 0.1294527, z: 0.2}
+--- !u!114 &-2643412038415099352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864643508744006601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f933cdf9107b904e95f1e7128f3f2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Open Chest
+  Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &5074171256621823567
 GameObject:
   m_ObjectHideFlags: 0

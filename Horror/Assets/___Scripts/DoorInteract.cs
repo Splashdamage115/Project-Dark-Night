@@ -28,8 +28,11 @@ public class DoorInteract : MonoBehaviour
 
     private void Start()
     {
-        if(gameObject.GetComponent<InteractText>() != null)
-            gameObject.GetComponent<InteractText>().text = "Open Door";
+        if (gameObject.GetComponent<InteractText>() != null)
+        {
+            if (chest) gameObject.GetComponent<InteractText>().text = "Open Chest";
+            else gameObject.GetComponent<InteractText>().text = "Open Door";
+        }
         if(locked)
         {
             if(keyType != null)

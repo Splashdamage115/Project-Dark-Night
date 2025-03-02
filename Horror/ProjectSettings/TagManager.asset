@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - DoorSpawnLocation
   - LabKeySpawn
+  - PowerKeySpawn
   layers:
   - Default
   - TransparentFX
